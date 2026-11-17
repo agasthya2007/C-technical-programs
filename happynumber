@@ -1,0 +1,41 @@
+
+#include <stdio.h>
+
+int sumOfSquares(int n)
+{
+    int sum = 0, digit;
+
+    while (n > 0)
+    {
+        digit = n % 10;
+        sum += digit * digit;
+        n = n / 10;
+    }
+
+    return sum;
+}
+
+int main()
+{
+    int n, slow, fast;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    slow = n;
+    fast = n;
+
+    do
+    {
+        slow = sumOfSquares(slow);
+        fast = sumOfSquares(sumOfSquares(fast));
+
+    } while (slow != fast);
+
+    if (slow == 1)
+        printf("%d is a Happy Number", n);
+    else
+        printf("%d is not a Happy Number", n);
+
+    return 0;
+}
